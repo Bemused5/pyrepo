@@ -3,9 +3,9 @@ import openai
 from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, origins=["https://mausalinas.com/"])
 
-openai.api_key = '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'
+openai.api_key = ''
 
 @app.route('/get_gpt_response', methods=['POST'])
 def get_gpt_response():
@@ -32,5 +32,4 @@ def get_gpt_response():
 
 
 if __name__ == "__main__":
-    app.run(port=5000, debug=True)
-CORS(app, origins=["https://mausalinas.com/"])
+    app.run(port=5000, debug=True, ssl_context=('cert.pem', 'key.pem'))
